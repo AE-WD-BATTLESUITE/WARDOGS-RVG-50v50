@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security problem
+    url: https://github.com/AE-WD-BATTLESUITE/WARDOGS-RVG-50v50/blob/main/SECURITY.md
+    about: If its sensitive, read this first and DONT put the details in a public issue
+  - name: Setup help
+    url: https://github.com/AE-WD-BATTLESUITE/WARDOGS-RVG-50v50#setting-it-up
+    about: The eight step setup guide, from turning RCON on to running it live

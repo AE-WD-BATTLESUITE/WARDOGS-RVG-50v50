@@ -1,0 +1,40 @@
+{
+  "name": "wardogs-rvg-50v50",
+  "version": "1.0.0",
+  "description": "Team balancer for WARDOGS 50v50 servers. Evens the sides without dragging settled players out of a fight, keeps clans together, closes the third faction. Talks to your server RCON. No database, no dependencies.",
+  "main": "balancer.js",
+  "bin": {
+    "wd-balancer": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "check": "node index.js --check",
+    "dry-run": "node index.js --dry-run",
+    "test": "node selftest.js",
+    "stress": "node stress.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "wardogs",
+    "rcon",
+    "game-server",
+    "team-balance",
+    "autobalance"
+  ],
+  "license": "MIT",
+  "dependencies": {},
+  "files": [
+    "index.js",
+    "balancer.js",
+    "selftest.js",
+    "stress.js",
+    "config.example.json",
+    "ecosystem.config.js",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "author": "SIXFIVE"
+}

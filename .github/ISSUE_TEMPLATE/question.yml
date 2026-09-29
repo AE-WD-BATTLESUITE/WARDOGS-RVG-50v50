@@ -1,0 +1,17 @@
+name: A question, or an idea
+description: How do I, why does it, could it
+labels: ["question"]
+body:
+  - type: textarea
+    id: q
+    attributes:
+      label: Whats on your mind
+      description: If its a setup problem, say what `node index.js --check` prints.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        Worth a look first: the setup steps and the troubleshooting section in the
+        [readme](../blob/main/README.md). The RCON port not being the game port catches
+        nearly everybody once.

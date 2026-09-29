@@ -1,0 +1,53 @@
+name: Somthings broken
+description: It did somthing it shouldnt have, or didnt do somthing it should
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before you start: **dont paste your `config.json` with the RCON password in it.**
+        Take the password out first. Same goes for logs, check them over.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you expected, and what it actualy did.
+      placeholder: I expected it to leave settled players alone, but it moved six of them mid match.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: The log lines around it
+      description: A few lines either side of where it went wrong. Password removed.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: config
+    attributes:
+      label: Your config
+      description: "**Password removed.** The settings matter more than the servers."
+      render: json
+  - type: input
+    id: players
+    attributes:
+      label: How many were on, and what did the teams look like
+      placeholder: about 80 on, roughly 45 v 35
+  - type: input
+    id: node
+    attributes:
+      label: Node version
+      description: "`node --version`"
+      placeholder: v20.11.0
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Two quick things first
+      options:
+        - label: "`node selftest.js` passes on my machine"
+          required: true
+        - label: I have taken my RCON password out of everything above
+          required: true

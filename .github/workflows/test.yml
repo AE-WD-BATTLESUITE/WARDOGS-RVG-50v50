@@ -1,0 +1,72 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      # no install step on purpose: this project has no dependencies
+
+      - name: syntax
+        run: |
+          node --check index.js
+          node --check balancer.js
+          node --check selftest.js
+          node --check ecosystem.config.js
+
+      - name: the example config is valid json
+        run: node -e "JSON.parse(require('fs').readFileSync('config.example.json','utf8'))"
+
+      - name: the validator REJECTS the untouched example
+        run: |
+          if node index.js config.example.json --check > out.txt 2>&1; then
+            echo "validator accepted the example config with the placeholder password in it"
+            cat out.txt
+            exit 1
+          fi
+          grep -q "still has the example password" out.txt
+          echo "rejected as it should be"
+
+      - name: the validator ACCEPTS a filled in config
+        run: |
+          node -e "
+            const fs=require('fs');
+            const c=JSON.parse(fs.readFileSync('config.example.json','utf8'));
+            c.servers=[{name:'ci',host:'10.0.0.5',port:7779,token:'a-real-password'}];
+            fs.writeFileSync('ci-config.json',JSON.stringify(c));
+          "
+          node index.js ci-config.json --check
+
+      - name: the validator REJECTS a placeholder host
+        run: |
+          node -e "
+            const fs=require('fs');
+            fs.writeFileSync('ci-host.json',JSON.stringify({servers:[
+              {name:'ci',host:'YOUR.IP',port:7779,token:'a-real-password'}]}));
+          "
+          if node index.js ci-host.json --check > host.txt 2>&1; then
+            echo "validator accepted a placeholder host"
+            cat host.txt
+            exit 1
+          fi
+          grep -q "still has the example host" host.txt
+          echo "rejected as it should be"
+
+      - name: selftest
+        run: node selftest.js
+
+      - name: stress (quick pass, full campaign is `npm run stress`)
+        if: matrix.node == 20
+        run: node stress.js 10

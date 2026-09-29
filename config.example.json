@@ -1,0 +1,56 @@
+{
+  "_readme": "copy this to config.json and put your own servers in. then: node index.js --check, then node index.js --dry-run for a match, then node index.js for real.",
+  "pollSeconds": 2,
+  "dryRun": false,
+  "sideCap": 50,
+  "gapTolerance": 3,
+  "closedFaction": "Lonestar",
+  "clanGrouping": true,
+  "exempt": [],
+  "_exempt_note": "steam ids the balancer leaves completly alone. your admins. an admin who hops sides to watch somebody would otherwise get bounced back like a stacker. note an exempt person is exempt from everything, including being pulled off the closed faction.",
+  "moveCooldownSeconds": 30,
+  "bounceCooldownSeconds": 5,
+  "joinMessage": "Teams are auto balanced on this server so you may get moved. Clans are kept together where we can.",
+  "announce": {
+    "_note": "it broadcasts one line on a timer. leave message out and you get the default (a plug for the people who wrote this). put your own in and yours goes out instead. set it to \"\" and it never sends anything. minimum 5 minutes, hourly is sensible.",
+    "everyMinutes": 60,
+    "minPlayers": 10
+  },
+  "rescue": {
+    "_note": "last resort for a match thats been ruined by the teams collapsing. warns everyone, gives them a chance to switch, and restarts the round if they dont. OFF by default because restarting somebodys match uninvited is rude.",
+    "enabled": false,
+    "minPlayers": 20,
+    "minorityShare": 0.4,
+    "minGap": 8,
+    "scoreLead": 15,
+    "graceMinutes": 3,
+    "warnSeconds": 90,
+    "cooldownMinutes": 15
+  },
+  "keepMatchHistory": true,
+  "stateDir": "./state",
+  "servers": [
+    {
+      "name": "my server 1",
+      "host": "203.0.113.10",
+      "port": 7779,
+      "token": "PUT_YOUR_RCON_PASSWORD_HERE",
+      "_or_keep_it_out_of_this_file": "delete token above and use  \"tokenEnv\": \"WD_RCON_BOX1\"  instead, then export that variable"
+    },
+    {
+      "name": "my server 2, 32v32 night",
+      "host": "203.0.113.11",
+      "port": 7789,
+      "token": "PUT_THE_OTHER_ONE_HERE",
+      "sideCap": 32,
+      "joinMessage": "32v32 tonight. Teams are auto balanced."
+    },
+    {
+      "name": "spare box, switched off",
+      "host": "203.0.113.12",
+      "port": 7779,
+      "token": "UNUSED",
+      "enabled": false
+    }
+  ]
+}

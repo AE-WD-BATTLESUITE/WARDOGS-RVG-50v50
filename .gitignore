@@ -1,0 +1,30 @@
+# YOUR CONFIG. this holds your RCON password. never commit it.
+config.json
+config.*.json
+!config.example.json
+
+# runtime state, no reason to ever commit it
+state/
+*.log
+broadcasts.txt
+
+# node
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# editors and os junk
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# anything that smells like a secret
+.env
+.env.*
+*.pem
+*.key
+secrets*
+ci-*.json
