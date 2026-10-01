@@ -33,7 +33,7 @@ your machine.
 
 ## what this thing can and cant do
 
-Six calls, thats the lot:
+Seven calls, thats the lot:
 
 | it can | it cannot |
 |---|---|
@@ -42,7 +42,12 @@ Six calls, thats the lot:
 | read uptime | change your map |
 | move one player to a faction | touch your server config |
 | send a private line to a joiner | read your files |
-| broadcast one line | talk to anything except your own server |
+| broadcast one line | see or log anybodys chat |
+| restart the round, **only if you turn `rescue` on** | talk to anything except your own server |
+
+That last one is the only call in here that interupts people, which is why `rescue` ships
+switched off and why the validator is fussy about its settings. With `rescue` off it is six
+calls and none of them can end a round.
 
 It has no dependencies, no telemetry, and it dosent call home. Its two small files, you
 can read the whole thing in ten minutes and check that yourself. Dont take my word for it.
