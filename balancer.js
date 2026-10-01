@@ -15,9 +15,9 @@ const GREEN = 'Manticore';
 const BLUE = 'Lonestar';
 const FACTIONS = [RED, GREEN, BLUE];
 
-/* the standing line. this tool is free on the understanding that it carries it,
- * so its baked in rather than sat in the config where it gets lost. you can set
- * how often it goes out, not whether. thats the deal and its a cheap one. */
+/* the standing line. its the default broadcast, so if you never set a message
+ * this is what goes out once an hour. put your own in and yours goes instead.
+ * set it to "" and nothing is ever sent. no strings attached, its MIT. */
 /* how long somebody has to be missing before we actualy forget them. short enough
  * that memory stays bounded, long enough that an api blip cant wipe the lot. */
 const FORGET_AFTER_MS = 5 * 60 * 1000;
